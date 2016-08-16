@@ -1,7 +1,7 @@
 // 引入依赖
 let cheerio = require('cheerio');
 let request = require('request');
-let config = require('./config');
+let config = require('../output.config.js');
 
 // 获取虾米音乐实时推荐榜
 const HOST = 'http://www.xiami.com';
@@ -43,7 +43,11 @@ function handleGetBody(data, receive) {
     });
   });
 
-  receive(songList);
+  let response = {
+    songList,
+    success: true
+  };
+  receive(response);
 
   return;
 

@@ -1,7 +1,7 @@
 // 引入依赖
 let cheerio = require('cheerio');
 let request = require('request');
-let config = require('./config');
+let config = require('../output.config.js');
 
 // 获取网易云音乐
 
@@ -37,12 +37,16 @@ function handleGetBody(data, receive) {
       let url = link.attr('href');
       songList[index].push({
         song,
-        url: `${HOST}url`
+        songLink: `${HOST}${url}`
       });
     });
   });
-
-  receive(songList);
+  
+  let response = {
+    songList,
+    success: true
+  };
+  receive(response);
 
   // return;
 
