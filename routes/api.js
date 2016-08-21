@@ -6,7 +6,7 @@ router.get('/music_more/:type', function(req, res, next) {
   const { type } = req.params;
   const { query: options } = req.query;
   spider.getInfo(type, options, (result) => {
-    res.json(result);
+    res.send(result);
   });
 });
 

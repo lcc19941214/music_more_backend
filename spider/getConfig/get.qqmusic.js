@@ -1,7 +1,7 @@
 // 引入依赖
 let cheerio = require('cheerio');
 let request = require('request');
-let config = require('../output.config.js');
+let output = require('../output.config.js');
 
 // 获取网易云音乐
 
@@ -15,7 +15,6 @@ let query = `?tpl=3&page=detail&date=2016_28&topid=5&type=top&song_begin=${song_
 query += `&g_tk=2055711317&jsonpCallback=MusicJsonCallbacktoplist&loginUin=245987239&hostUin=0`;
 query += `&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0;`
 
-// let query = `http://i.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?tpl=3&page=detail&date=2016_28&topid=5&type=top&song_begin=0&song_num=30&g_tk=2055711317&jsonpCallback=MusicJsonCallbacktoplist&loginUin=245987239&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0`;
 const url = `${HOST}/v8/fcg-bin/fcg_v8_toplist_cp.fcg${query}`;
 
 const requestOption = {
@@ -23,7 +22,7 @@ const requestOption = {
   method: 'GET'
 };
 
-function sendRequest(receive) {
+function fetchData(receive) {
   request(requestOption, (err, res, body) => {
     if (err) throw err;
     handleGetBody(body, receive);
@@ -48,11 +47,6 @@ function handleGetBody(callbackStr, receive) {
     success: true
   };
   receive(response);
-
-  // return;
-
-  // 输出文件
-  // config.output(null, 'netease.html', data);
 }
 
-module.exports = sendRequest;
+module.exports = fetchData;

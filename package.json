@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "./bin/www",
+    "nodemon": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -14,9 +15,11 @@
     "iconv-lite": "^0.4.13",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
+    "node-fetch": "^1.6.0",
     "request": "^2.74.0",
     "serve-favicon": "~2.3.0",
     "sync-request": "^3.0.1",
-    "then-request": "^2.2.0"
+    "then-request": "^2.2.0",
+    "whatwg-fetch": "^1.0.0"
   }
 }

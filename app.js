@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+var schedule = require('./schedule/index');
 
 var app = express();
 
@@ -58,5 +59,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// 定时任务
+schedule.preLoadMusic();
 
 module.exports = app;

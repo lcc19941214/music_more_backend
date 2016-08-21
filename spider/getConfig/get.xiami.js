@@ -1,7 +1,7 @@
 // 引入依赖
 let cheerio = require('cheerio');
 let request = require('request');
-let config = require('../output.config.js');
+let output = require('../output.config.js');
 
 // 获取虾米音乐实时推荐榜
 const HOST = 'http://www.xiami.com';
@@ -16,7 +16,7 @@ const requestOption = {
   jar: j
 };
 
-function sendRequest(receive) {
+function fetchData(receive) {
   request(requestOption, (err, res, body) => {
     if (err) throw err;
     handleGetBody(body, receive);
@@ -48,11 +48,6 @@ function handleGetBody(data, receive) {
     success: true
   };
   receive(response);
-
-  return;
-
-  // 输出文件
-  config.output(null, 'info.txt', text);
 }
 
-module.exports = sendRequest;
+module.exports = fetchData;
